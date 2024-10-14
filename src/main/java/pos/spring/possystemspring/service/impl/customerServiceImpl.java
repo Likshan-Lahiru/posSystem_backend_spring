@@ -15,6 +15,7 @@ import pos.spring.possystemspring.entity.impl.CustomerEntity;
 import pos.spring.possystemspring.service.CustomerService;
 import pos.spring.possystemspring.util.Mapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -69,6 +70,12 @@ public class customerServiceImpl implements CustomerService {
             tempCustomer.get().setCustomerAddress(customerDto.getCustomerAddress());
             tempCustomer.get().setCustomerPhone(customerDto.getCustomerPhone());
         }
+    }
+
+    @Override
+    public List<CustomerDto> getAllCustomer() {
+        List<CustomerEntity> all = customerDao.findAll();
+        return mapper.customerDtoList(all);
     }
 
 

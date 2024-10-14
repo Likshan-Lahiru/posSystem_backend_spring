@@ -11,6 +11,8 @@ import pos.spring.possystemspring.dto.impl.CustomerDto;
 import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.CustomerService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/customer")
 public class CustomerController {
@@ -59,6 +61,13 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping
+    public List<CustomerDto> getAllCustomer(){
+        System.out.println("test getAllCustomer");
+      return customerService.getAllCustomer();
+    }
+
 
     @GetMapping("/genCusID")
     public String generateCustomerId(){

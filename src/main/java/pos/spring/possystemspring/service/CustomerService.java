@@ -1,6 +1,6 @@
 package pos.spring.possystemspring.service;
 
-import org.springframework.http.ResponseEntity;
+import java.util.List;
 import pos.spring.possystemspring.dto.impl.CustomerDto;
 
 public interface CustomerService {
@@ -9,5 +9,7 @@ public interface CustomerService {
     String generateCustomerID();
 
     void updateCustomer(String customerId, CustomerDto customerDto);
+
+    List<CustomerDto> getAllCustomer();
 }
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pos.spring.possystemspring.dao.CustomerDao;
 import pos.spring.possystemspring.dto.impl.CustomerDto;
 import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.CustomerService;
@@ -20,6 +21,8 @@ public class CustomerController {
     private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private CustomerDao customerDao;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -67,12 +70,28 @@ public class CustomerController {
         System.out.println("test getAllCustomer");
       return customerService.getAllCustomer();
     }
+    @DeleteMapping(value = "/{customerId}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable("customerId") String customerId){
+
+
+        System.out.println("test delete customer"+customerId);
+        try {
+            customerService.deleteCustmer(customerId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (DataPersistException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 
 
     @GetMapping("/genCusID")
     public String generateCustomerId(){
         String customerId = customerService.generateCustomerID();
         return customerId;
+
 
     }
 

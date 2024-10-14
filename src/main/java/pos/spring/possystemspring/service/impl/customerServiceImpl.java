@@ -78,5 +78,16 @@ public class customerServiceImpl implements CustomerService {
         return mapper.customerDtoList(all);
     }
 
+    @Override
+    public void deleteCustmer(String customerId) {
+        Optional<CustomerEntity> byId = customerDao.findById(customerId);
+        if (!byId.isPresent()) {
+            throw new DataIntegrityViolationException("Customer with id"+ customerId +"customer not found");
+        }else {
+            customerDao.deleteById(customerId);
+        }
+
+    }
+
 
 }

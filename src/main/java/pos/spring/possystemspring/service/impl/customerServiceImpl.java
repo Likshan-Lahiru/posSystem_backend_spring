@@ -15,6 +15,8 @@ import pos.spring.possystemspring.entity.impl.CustomerEntity;
 import pos.spring.possystemspring.service.CustomerService;
 import pos.spring.possystemspring.util.Mapping;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class customerServiceImpl implements CustomerService {
@@ -55,6 +57,17 @@ public class customerServiceImpl implements CustomerService {
         } else {
 
             return "C00-001";
+        }
+    }
+
+    @Override
+    public void updateCustomer(String customerId, CustomerDto customerDto) {
+        Optional<CustomerEntity> tempCustomer = customerDao.findById(customerId);
+        if (tempCustomer.isPresent()) {
+            tempCustomer.get().setCustomerId(customerId);
+            tempCustomer.get().setCustomerName(customerDto.getCustomerName());
+            tempCustomer.get().setCustomerAddress(customerDto.getCustomerAddress());
+            tempCustomer.get().setCustomerPhone(customerDto.getCustomerPhone());
         }
     }
 

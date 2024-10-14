@@ -29,7 +29,6 @@ public class CustomerController {
                               +"address :"+ customerDto.getCustomerAddress() +"\n"
                               +"Phone :"+ customerDto.getCustomerPhone()
                 );*/
-
         try {
             customerService.saveCustomer(customerDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -40,6 +39,26 @@ public class CustomerController {
         }
 
     }
+    @PutMapping
+    public ResponseEntity<Void> updateCustomer(@RequestBody CustomerDto customerDto){
+        System.out.println("test Update customer");
+        String customerId = customerDto.getCustomerId();
+        System.out.println(
+                              "ID :" + customerId   + " \n"
+                              +"name :" + customerDto.getCustomerName() + "\n"
+                              +"address :"+ customerDto.getCustomerAddress() +"\n"
+                              +"Phone :"+ customerDto.getCustomerPhone()
+                );
+
+        try {
+            customerService.updateCustomer(customerId,customerDto);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (DataPersistException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/genCusID")
     public String generateCustomerId(){
@@ -47,6 +66,8 @@ public class CustomerController {
         return customerId;
 
     }
+
+
 
 
 

@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pos.spring.possystemspring.dto.impl.CustomerDto;
 import pos.spring.possystemspring.dto.impl.ItemDto;
 import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.ItemService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/item")
@@ -62,8 +65,12 @@ public class ItemController {
     public String generateItemId(){
         String ItemId = itemService.generateItemID();
         return ItemId;
+    }
 
-
+    @GetMapping
+    public List<ItemDto> getAllCustomer(){
+        System.out.println("Item getAllItem");
+        return  itemService.getAllItem();
     }
 
 }

@@ -24,6 +24,9 @@ public class Mapping {
         return modelMapper.map(customerEntityList, new TypeToken<List<CustomerDto>>() {}.getType());
 
     }
+    public List<ItemDto> itemDtoList(List<ItemEntity> itemEntityList){
+        return modelMapper.map(itemEntityList, new TypeToken<List<ItemDto>>() {}.getType());
+    }
     public CustomerDto customerDto(CustomerEntity customerEntity){
         return modelMapper.map(customerEntity, CustomerDto.class);
     }

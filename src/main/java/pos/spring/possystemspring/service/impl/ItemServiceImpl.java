@@ -1,5 +1,8 @@
 package pos.spring.possystemspring.service.impl;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -17,6 +20,9 @@ import java.util.Optional;
 @Service
 @Transactional
 public class ItemServiceImpl implements ItemService {
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Autowired
     private ItemDao itemDao;
 
@@ -34,7 +40,21 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public String generateItemID() {
-        return "";
+        TypedQuery<String> query = entityManager.createQuery(
+                "SELECT c.itemId FROM ItemEntity c ORDER BY c.itemId DESC", String.class);
+        query.setMaxResults(1);
+
+
+        String lastItemId = query.getResultStream().findFirst().orElse(null);
+
+        if (lastItemId != null) {
+
+            int generatedCustomerId = Integer.parseInt(lastItemId.replace("I00-", "")) + 1;
+            return String.format("I00-%03d", generatedCustomerId);
+        } else {
+
+            return "I00-001";
+        }
     }
 
     @Override

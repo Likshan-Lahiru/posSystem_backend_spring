@@ -36,6 +36,7 @@ public class ItemController {
         }
 
     }
+
     @PutMapping
     public ResponseEntity<Void> updateItem(@RequestBody ItemDto itemDto) throws DataPersistException {
         System.out.println("test Update customer");
@@ -56,4 +57,13 @@ public class ItemController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/genItemID")
+    public String generateItemId(){
+        String ItemId = itemService.generateItemID();
+        return ItemId;
+
+
+    }
+
 }

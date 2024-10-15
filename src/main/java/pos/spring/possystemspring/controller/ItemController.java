@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pos.spring.possystemspring.dto.impl.CustomerDto;
 import pos.spring.possystemspring.dto.impl.ItemDto;
 import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.ItemService;
@@ -85,6 +84,12 @@ public class ItemController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping(value = "/{itemID}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ItemDto findCustomerById(@PathVariable("itemID") String itemId){
+        System.out.println("test findItemById");
+       return itemService.getItemById(itemId);
     }
 
 }

@@ -87,6 +87,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDto getItemById(String ItemId) {
-        return null;
+        return mapper.itemDto(itemDao.getById(ItemId));
     }
 }

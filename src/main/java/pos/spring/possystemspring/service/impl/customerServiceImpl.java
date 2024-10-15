@@ -89,5 +89,10 @@ public class customerServiceImpl implements CustomerService {
 
     }
 
+    @Override
+    public CustomerDto getCustomerById(String customerID) {
+        return mapper.customerDto(customerDao.getReferenceById(customerID));
+    }
+
 
 }

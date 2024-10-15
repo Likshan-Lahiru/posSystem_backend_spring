@@ -70,10 +70,9 @@ public class CustomerController {
         System.out.println("test getAllCustomer");
       return customerService.getAllCustomer();
     }
+
     @DeleteMapping(value = "/{customerId}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable("customerId") String customerId){
-
-
         System.out.println("test delete customer"+customerId);
         try {
             customerService.deleteCustmer(customerId);
@@ -86,7 +85,6 @@ public class CustomerController {
 
     }
 
-
     @GetMapping("/genCusID")
     public String generateCustomerId(){
         String customerId = customerService.generateCustomerID();
@@ -95,6 +93,11 @@ public class CustomerController {
 
     }
 
+    @GetMapping(value = "/{customerID}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CustomerDto findCustomerById(@PathVariable("customerID") String customerID){
+        System.out.println("test findCustomerById");
+       return customerService.getCustomerById(customerID);
+    }
 
 
 

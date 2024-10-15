@@ -72,29 +72,7 @@ You can view the complete API documentation [here](./api-documentation.md), whic
 - Expected input parameters (request bodies, query parameters).
 - Response format and status codes.
 
-## **Setup Instructions**
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/repo-name.git
-    ```
-
-2. **Navigate to the project directory**:
-    ```bash
-    cd repo-name
-    ```
-
-3. **Configure the MySQL database connection in `application.properties`**:
-    ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
-    spring.datasource.username=your_db_username
-    spring.datasource.password=your_db_password
-    ```
-
-4. **Run the application**:
-    ```bash
-    mvn spring-boot:run
-    ```
 
 5. **Access the Frontend Application**:
     Open your web browser and navigate to [https://your-frontend-url.com](https://your-frontend-url.com) to start interacting with the application.

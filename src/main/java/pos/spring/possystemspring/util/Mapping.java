@@ -5,7 +5,9 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pos.spring.possystemspring.dto.impl.CustomerDto;
+import pos.spring.possystemspring.dto.impl.ItemDto;
 import pos.spring.possystemspring.entity.impl.CustomerEntity;
+import pos.spring.possystemspring.entity.impl.ItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,9 @@ public class Mapping {
     }
     public CustomerDto customerDto(CustomerEntity customerEntity){
         return modelMapper.map(customerEntity, CustomerDto.class);
+    }
+    public ItemEntity itemEntity(ItemDto itemDto){
+        return modelMapper.map(itemDto, ItemEntity.class);
     }
 
 }

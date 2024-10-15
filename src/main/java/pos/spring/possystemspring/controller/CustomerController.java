@@ -21,8 +21,7 @@ public class CustomerController {
     private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
     @Autowired
     private CustomerService customerService;
-    @Autowired
-    private CustomerDao customerDao;
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

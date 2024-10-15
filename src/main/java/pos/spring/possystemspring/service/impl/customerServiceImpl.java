@@ -35,7 +35,7 @@ public class customerServiceImpl implements CustomerService {
         CustomerEntity customerEntity = mapper.customerEntity(customerDto);
         customerDao.save(customerEntity);
         if (customerEntity==null){
-            throw new DataIntegrityViolationException("customer not found");
+            throw new DataIntegrityViolationException("customer not saved");
         }
 
     }

@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pos.spring.possystemspring.dto.impl.ItemDto;
 import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.ItemService;
@@ -38,5 +35,25 @@ public class ItemController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    @PutMapping
+    public ResponseEntity<Void> updateItem(@RequestBody ItemDto itemDto) throws DataPersistException {
+        System.out.println("test Update customer");
+        String itemId = itemDto.getItemId();
+        System.out.println(
+                "ID :" + itemId   + " \n"
+                        +"name :" + itemDto.getDescription() + "\n"
+                        +"quantity :"+ itemDto.getQuantity() +"\n"
+                        +"rice :"+ itemDto.getUnitPrice()
+        );
+
+        try {
+            itemService.updateItem(itemId, itemDto);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (DataPersistException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

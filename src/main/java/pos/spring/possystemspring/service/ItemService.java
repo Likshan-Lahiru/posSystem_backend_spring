@@ -10,7 +10,7 @@ public interface ItemService {
 
     String generateItemID();
 
-    void updateCustomer(String itemId, ItemDto itemDto);
+    void updateItem(String itemId, ItemDto itemDto);
 
     List<ItemDto> getAllItem();
 

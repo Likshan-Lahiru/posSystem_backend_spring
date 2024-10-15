@@ -73,4 +73,18 @@ public class ItemController {
         return  itemService.getAllItem();
     }
 
+    @DeleteMapping(value = "/{itemId}")
+    public ResponseEntity<Object> deleteItem(@PathVariable("itemId") String itemId){
+        System.out.println("test delete item"+itemId);
+        try {
+            itemService.deleteItem(itemId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (DataPersistException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 }

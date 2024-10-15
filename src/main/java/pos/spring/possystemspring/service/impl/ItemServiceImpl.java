@@ -75,6 +75,13 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void deleteItem(String itemId) {
+        System.out.println("deleteItem service layer");
+        Optional<ItemEntity> tempItem = itemDao.findById(itemId);
+        if (!tempItem.isPresent()) {
+            throw new DataIntegrityViolationException("Item with id"+ itemId +"Item not found");
+        }else {
+            itemDao.deleteById(itemId);
+        }
 
     }
 

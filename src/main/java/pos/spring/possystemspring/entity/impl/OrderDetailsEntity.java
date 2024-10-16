@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import pos.spring.possystemspring.entity.SuperEntity;
 
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,22 +13,23 @@ import pos.spring.possystemspring.entity.SuperEntity;
 @Table(name = "OrderDetails")
 public class OrderDetailsEntity implements SuperEntity {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String orderDetailID;
+    private String orderId;
+
+    @PrePersist
+    public void generateOrderId() {
+        this.orderId = UUID.randomUUID().toString();
+    }
 
     @ManyToOne
-    @JoinColumn(name = "item_id",nullable = false)
+    @JoinColumn(name = "item_id", nullable = false)
     private ItemEntity item;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private OrderEntity order;
 
-
     private String qty;
     private String unitPrice;
     private String totalPrice;
-
 }

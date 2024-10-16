@@ -8,10 +8,12 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class OrderDetailsDto implements SuperDto {
+    private String orderDetailId;
     private String orderId;
-    private String productId;
-    private double price;
-    private int quantity;
+    private String itemId;
+    private double totalPrice;
+    private int qty;
     private double unitPrice;
 }

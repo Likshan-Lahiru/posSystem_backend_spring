@@ -27,24 +27,26 @@ public class OrderDetailServiceImplService implements OrderDetailsService {
     @Autowired
     private ItemDao itemDao;
     @Autowired
-    private OrderDetailsDao orderDetailDao;
+    private OrderDetailsDao orderDetailsDao;
     @Override
     public void saveOrderDetail(OrderDetailsDto orderDetailsDTO) {
+
         OrderDetailsEntity orderDetail = mapper.toOrderDetailEntity(orderDetailsDTO);
         OrderEntity selectedOrder = orderDao.getReferenceById(orderDetailsDTO.getOrderId());
-        ItemEntity selectedItem = itemDao.getReferenceById(orderDetailsDTO.getOrderId());
+        ItemEntity selectedItem = itemDao.getReferenceById(orderDetailsDTO.getItemId());
         orderDetail.setOrder(selectedOrder);
         orderDetail.setItem(selectedItem);
 
-        OrderDetailsEntity savedOrderDetail = orderDetailDao.save(orderDetail);
 
-        String itemId = orderDetailsDTO.getOrderId();
-        int qty = orderDetailsDTO.getQuantity();
+        OrderDetailsEntity savedOrderDetail = orderDetailsDao.save(orderDetail);
 
-        ItemEntity fetcheItem = itemDao.getReferenceById(itemId);
-        fetcheItem.setItemId(String.valueOf(fetcheItem.getQuantity() - qty));
+        String itemId = orderDetailsDTO.getItemId();
+        int qty = orderDetailsDTO.getQty();
 
-        ItemEntity savedItem = itemDao.save(fetcheItem);
+        ItemEntity fetchItem = itemDao.getReferenceById(itemId);
+        fetchItem.setQuantity(fetchItem.getQuantity() - qty);
+
+        ItemEntity savedItem = itemDao.save(fetchItem);
 
         if (savedOrderDetail == null || savedItem == null) {
             throw new DataPersistException();

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pos.spring.possystemspring.dao.CustomerDao;
 import pos.spring.possystemspring.dto.impl.CustomerDto;
 import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.CustomerService;
@@ -21,7 +20,6 @@ public class CustomerController {
     private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
     @Autowired
     private CustomerService customerService;
-
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -94,11 +92,9 @@ public class CustomerController {
 
     @GetMapping(value = "/{customerID}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerDto findCustomerById(@PathVariable("customerID") String customerID){
-        System.out.println("test findCustomerById");
+        System.out.println("test findCustomerById"+customerID);
        return customerService.getCustomerById(customerID);
     }
-
-
 
 
 }

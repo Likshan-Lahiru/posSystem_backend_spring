@@ -8,9 +8,9 @@ import pos.spring.possystemspring.dto.SuperDto;
 @Getter
 @Setter
 public class OrderDto implements SuperDto {
-    private String orderId;
-    private String customerId;
+    private String id;
     private String date;
-    private double discount;
-    private double total;
+    private double discount_value;
+    private double sub_total;
+    private String customerId;
 }

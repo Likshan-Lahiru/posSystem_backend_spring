@@ -17,9 +17,10 @@ import java.util.List;
 @RequestMapping("api/v1/customer")
 public class CustomerController {
 
-    private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
+
     @Autowired
     private CustomerService customerService;
+    static Logger logger = LoggerFactory.getLogger(ItemController.class);
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,10 +34,13 @@ public class CustomerController {
                 );*/
         try {
             customerService.saveCustomer(customerDto);
+
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -56,8 +60,10 @@ public class CustomerController {
             customerService.updateCustomer(customerId,customerDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -75,8 +81,10 @@ public class CustomerController {
             customerService.deleteCustmer(customerId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataPersistException e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

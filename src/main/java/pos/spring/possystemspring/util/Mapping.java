@@ -42,4 +42,8 @@ public class Mapping {
     public OrderEntity toOrderEntity(OrderDto orderDTO) {
         return modelMapper.map(orderDTO, OrderEntity.class);
     }
+
+    public OrderDto toOrderDTO(OrderEntity placeOrder) {
+        return modelMapper.map(placeOrder, OrderDto.class);
+    }
 }

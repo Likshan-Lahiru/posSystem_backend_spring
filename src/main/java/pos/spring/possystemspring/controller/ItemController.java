@@ -1,5 +1,7 @@
 package pos.spring.possystemspring.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,12 +13,15 @@ import pos.spring.possystemspring.service.ItemService;
 
 import java.util.List;
 
+import static com.mysql.cj.conf.PropertyKey.logger;
+
 @RestController
 @RequestMapping("api/v1/item")
 public class ItemController {
 
     @Autowired
     private ItemService itemService;
+    private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,8 +37,10 @@ public class ItemController {
             itemService.saveItem(itemDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -54,8 +61,10 @@ public class ItemController {
             itemService.updateItem(itemId, itemDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -79,8 +88,11 @@ public class ItemController {
             itemService.deleteItem(itemId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataPersistException e){
+
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

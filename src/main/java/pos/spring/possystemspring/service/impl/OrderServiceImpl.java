@@ -13,6 +13,8 @@ import pos.spring.possystemspring.exception.DataPersistException;
 import pos.spring.possystemspring.service.OrderService;
 import pos.spring.possystemspring.util.Mapping;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -59,5 +61,15 @@ public class OrderServiceImpl implements OrderService {
         if (save == null) {
             throw new DataPersistException();
         }
+    }
+    @Override
+    public List<OrderDto> getAllOrders() {
+        Iterable<OrderEntity> all = orderDao.findAll();
+        List<OrderDto> placeOrderDto = new ArrayList<>();
+
+        all.forEach(placeOrder -> {
+            placeOrderDto.add(mapper.toOrderDTO(placeOrder));
+        });
+        return placeOrderDto;
     }
 }

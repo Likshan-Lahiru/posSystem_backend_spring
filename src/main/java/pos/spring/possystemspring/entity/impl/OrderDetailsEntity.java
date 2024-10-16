@@ -13,9 +13,10 @@ import pos.spring.possystemspring.entity.SuperEntity;
 public class OrderDetailsEntity implements SuperEntity {
 
 
-
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String orderDetailID;
+
     @ManyToOne
     @JoinColumn(name = "item_id",nullable = false)
     private ItemEntity item;

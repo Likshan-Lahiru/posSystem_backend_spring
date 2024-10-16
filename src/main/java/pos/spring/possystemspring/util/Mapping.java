@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pos.spring.possystemspring.dto.impl.CustomerDto;
 import pos.spring.possystemspring.dto.impl.ItemDto;
+import pos.spring.possystemspring.dto.impl.OrderDetailsDto;
 import pos.spring.possystemspring.dto.impl.OrderDto;
 import pos.spring.possystemspring.entity.impl.CustomerEntity;
 import pos.spring.possystemspring.entity.impl.ItemEntity;
+import pos.spring.possystemspring.entity.impl.OrderDetailsEntity;
 import pos.spring.possystemspring.entity.impl.OrderEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -45,5 +46,9 @@ public class Mapping {
 
     public OrderDto toOrderDTO(OrderEntity placeOrder) {
         return modelMapper.map(placeOrder, OrderDto.class);
+    }
+
+    public OrderDetailsEntity toOrderDetailEntity(OrderDetailsDto orderDetailsDTO) {
+        return modelMapper.map(orderDetailsDTO, OrderDetailsEntity.class);
     }
 }

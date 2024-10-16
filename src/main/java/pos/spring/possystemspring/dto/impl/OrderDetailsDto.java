@@ -11,7 +11,7 @@ import lombok.*;
 @ToString
 public class OrderDetailsDto implements SuperDto {
     private String orderDetailId;
-    private String orderId;
+    private String id;
     private String itemId;
     private double totalPrice;
     private int qty;

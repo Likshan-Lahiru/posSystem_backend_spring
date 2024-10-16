@@ -32,7 +32,7 @@ public class OrderDetailServiceImplService implements OrderDetailsService {
     public void saveOrderDetail(OrderDetailsDto orderDetailsDTO) {
 
         OrderDetailsEntity orderDetail = mapper.toOrderDetailEntity(orderDetailsDTO);
-        OrderEntity selectedOrder = orderDao.getReferenceById(orderDetailsDTO.getOrderId());
+        OrderEntity selectedOrder = orderDao.getReferenceById(orderDetailsDTO.getId());
         ItemEntity selectedItem = itemDao.getReferenceById(orderDetailsDTO.getItemId());
         orderDetail.setOrder(selectedOrder);
         orderDetail.setItem(selectedItem);

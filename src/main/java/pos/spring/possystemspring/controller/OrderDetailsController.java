@@ -31,11 +31,11 @@ public class OrderDetailsController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
             e.printStackTrace();
-
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             e.printStackTrace();
-
+            logger.error("Faild with: ",e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

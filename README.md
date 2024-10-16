@@ -1,10 +1,10 @@
 ---
 
-# **POS System Spring API Project**
+# **POS System Spring RESTful API Project**
 
 ## **Project Overview**
 
-This project is a fully functional **API** built using **Spring**, **Spring Data JPA**, and **Hibernate** for database management with **MySQL**. The API provides endpoints for managing customers, orders, and other resources in a POS (Point of Sale) system.
+This project is a fully functional **RESTful API** built using the **Spring Framework**, **Spring MVC**, **Spring Data JPA**, and **Hibernate** for database management with **MySQL**. The API provides endpoints for managing customers, orders, and other resources in a POS (Point of Sale) system.
 
 The project includes:
 - **Spring Web MVC** for building the web interface.
@@ -14,7 +14,7 @@ The project includes:
 - Complete **API documentation** linked below for reference.
 
 ## **Tech Stack**
-- **Backend**: Spring Boot (Spring Web MVC)
+- **Backend**: Spring Framework (Spring Web MVC)
 - **ORM**: Spring Data JPA with Hibernate
 - **Database**: MySQL
 - **Frontend**: AJAX (or Fetch API)
@@ -66,7 +66,11 @@ src/
 │   │   │   ├── repository/    # Database interactions (Spring Data JPA)
 │   ├── resources/
 │   │   ├── logback.xml        # Logging configuration
-│   │   ├── application.properties  # Application configuration
+│   │   ├── applicationContext.xml  # Spring Application Context Configuration
+│   │   ├── dispatcher-servlet.xml   # Spring MVC Configuration
+├── webapp/
+│   ├── WEB-INF/
+│   │   ├── web.xml            # Deployment descriptor
 ├── test/                        # Unit and integration tests
 ```
 
@@ -88,7 +92,7 @@ The API supports basic CRUD operations for resources. Below is a quick overview 
   - `PUT /api/orders/{id}`: Update an existing order by ID.
   - `DELETE /api/orders/{id}`: Delete an order by ID.
 
-- **Item**
+- **Products**
   - `GET /api/products`: Fetch all products.
   - `GET /api/products/{id}`: Fetch a product by ID.
   - `POST /api/products`: Create a new product.
@@ -103,108 +107,18 @@ The API supports basic CRUD operations for resources. Below is a quick overview 
 
 Before you begin, ensure you have met the following requirements:
 
-- **Java Development Kit (JDK)**: Version 21.
+- **Java Development Kit (JDK)**: Version 11 or higher.
 - **Maven**: For building the project.
 - **MySQL Database**: Ensure MySQL is installed and running.
+- **Apache Tomcat**: Version 9.x or higher for deploying the application.
 - **Git**: For cloning the repository.
 
-### **Installation**
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/Likshan-Lahiru/posSystem_backend_spring.git
-   ```
-
-2. **Navigate to the Project Directory**
-
-   ```bash
-   cd pos_system
-   ```
-
-3. **Configure the Database**
-
-   - Create a new MySQL database for the project.
-   - Update the `` file located in `src/main/resources/` with your database credentials:
-
-   
-
-4. **Build the Project**
-
-   ```bash
-   mvn clean install
-   ```
-
-### **Running the Application**
-
-After successfully building the project, you can run the application using the following command:
-
-```bash
-mvn spring-boot:run
-```
-
-The application will start on `http://localhost:8080/` by default.
 
 ### **Accessing the API Documentation**
 
 Access the comprehensive API documentation via Postman:
 
 - **Postman Collection**: [POS System API Documentation](https://www.postman.com/supply-engineer-31331527/possystem-spring/collection/vc5wb07/possystem-spring?action=share&creator=36186170)
-
-### **Testing**
-
-The project includes unit and integration tests using **JUnit** and **Mockito**.
-
-- **Run Tests**
-
-  ```bash
-  mvn test
-  ```
-
-## **Configuration**
-
-
-
-The `application.properties` file located in `src/main/resources/` contains configuration settings for the application. Key configurations include:
-
-- **Database Configuration**
-
- 
-- **Server Port**
-
-  To change the default server port (8080):
-
-
-
-- **Logging Configuration**
-
-  Logging is configured via `logback.xml` in the same directory.
-
-### **Environment Variables**
-
-
-
-## **Deployment**
-
-To deploy the application to a production environment:
-
-1. **Build the Project**
-
-   ```bash
-   mvn clean package
-   ```
-
-   This will generate a JAR file in the `target/` directory.
-
-2. **Run the JAR**
-
-   ```bash
-   java -jar target/pos_system-0.0.1-SNAPSHOT.jar
-   ```
-
-3. **Configure Environment**
-
-   Ensure that the production database is properly configured and accessible by the application. Update the `application.properties` or use environment variables to set production-specific configurations.
 
 
 
@@ -214,11 +128,12 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## **Acknowledgments**
 
-- **Spring **: For providing a robust framework for building Java applications.
+- **Spring Framework**: For providing a robust framework for building Java applications.
 - **Hibernate**: For simplifying ORM and database interactions.
 - **MySQL**: For being a reliable and widely-used database system.
 - **JUnit & Mockito**: For facilitating effective testing.
 - **SLF4J & Logback**: For efficient logging management.
+- **Apache Tomcat**: For serving as a reliable servlet container.
 - **Open Source Contributors**: For their invaluable contributions to the tools and libraries used in this project.
 
 ## **Contact**
@@ -226,7 +141,7 @@ This project is licensed under the [MIT License](LICENSE).
 For any inquiries or feedback, please contact:
 
 - **Name**: Likshan Lahiru
-- **Email**: [your.email@example.com](mailto:lahiru212001email@example.com)
+- **Email**: [your.email@example.com](mailto:lahiru212001@gmail.com)
 - **GitHub**: [https://github.com/Likshan-Lahiru](https://github.com/Likshan-Lahiru)
 
 ---

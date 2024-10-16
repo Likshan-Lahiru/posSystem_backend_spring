@@ -1,4 +1,3 @@
-To include your frontend URL in your README file, you can add a section that describes your frontend and backend integration. Below is an updated version of your README with the frontend URL included and the details adjusted as per your project requirements:
 
 ---
 
